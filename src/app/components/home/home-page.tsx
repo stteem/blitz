@@ -108,10 +108,10 @@ export const HomePage = () => {
           alt='Logo'
           width={600}
           height={0} // Use state for height
-          className='w-full h-[400px] md:h-[800px]'
+          className='w-full h-[450px] md:h-[800px]'
         />
       </div>
-      <div className='flex flex-col flex-grow h-[800px] md:h-[800px] p-10 justify-normal items-center text-white bg-light-lavender'>
+      <div className='flex flex-col flex-grow h-[900px] md:h-[800px] p-10 justify-normal items-center text-white bg-light-lavender'>
         <h1 className='text-6xl font-extrabold mb-10 text-white'>Blit</h1>
         <div className='w-full md:w-[80%] h-auto'>
         <p className='mb-5 text-lg'>
