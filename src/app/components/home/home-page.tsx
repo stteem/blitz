@@ -1,20 +1,12 @@
 // src/components/pages/home-page.tsx
 'use client'
 import { Button } from '@/components/ui/button'
-import { useCounterStore } from '@/providers/counter-store-provider'
+// import { useCounterStore } from '@/providers/counter-store-provider'
 import Image from 'next/image'
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 
 export const HomePage = () => {
-  const { count, incrementCount, decrementCount } = useCounterStore(
-    (state) => state,
-  )
   
-  const [imageHeight, setImageHeight] = useState<number>(0);
-
-  useEffect(() => {
-    setImageHeight(window.innerHeight); // Set height after component mounts
-  }, []);
 
   return (
     <div className='flex flex-col md:flex-row w-full h-auto justify-start items-start bg-light-cream'>
@@ -53,7 +45,7 @@ export const HomePage = () => {
             <label htmlFor='password' className='block text-sm font-medium text-white'>Password</label>
             <input type='password' id='password' name='password' required className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-500' />
           </div>
-          <button type='submit' className='w-full bg-blue-600 text-white font-bold py-2 rounded-md hover:bg-blue-700'>Register</button>
+          <Button type='submit' className='w-full bg-blue-600 text-white font-bold py-2 rounded-md hover:bg-blue-700'>Register</Button>
         </form>
 
       </div>
