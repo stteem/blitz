@@ -102,24 +102,28 @@ export const HomePage = () => {
 
   return (
     <div className='flex flex-col md:flex-row w-full md:h-[700px] justify-start items-start bg-light-cream'>
-      <div className='w-full h-auto'>
+      <div className='w-full md:w-[1900px] h-auto'>
         <Image
           src='/social.png'
           alt='Logo'
           width={600}
           height={0} // Use state for height
-          className='w-full h-[400px] md:h-[700px]'
+          className='w-full h-[400px] md:h-[800px]'
         />
       </div>
-      <div className='flex flex-col flex-grow h-[750px] md:h-[700px] p-10 justify-normal items-center text-white bg-light-lavender'>
+      <div className='flex flex-col flex-grow h-[800px] md:h-[800px] p-10 justify-normal items-center text-white bg-light-lavender'>
         <h1 className='text-6xl font-extrabold mb-10 text-white'>Blit</h1>
         <div className='w-full md:w-[80%] h-auto'>
         <p className='mb-5 text-lg'>
-          Blit Helps Boost Organic Likes & Engagements on Your Social Media Posts!
+          Earn rewards while boosting your favorite content! Blitters get rewarded for
+          genuine engagement, and content creators thrive with organic interactions. 
+          Make every like count! 🚀✨
         </p>
-        <p className='mb-2 text-lg'>Phase 1 launches very soon, register now to make the cut. Total limited slots 5000, available slots 3870.</p>
+        <p className='text-lg'>Phase 1 launches very soon, register now to make the cut. 
+          Total limited slots 5000, available slots 3870.
+        </p>
         
-        <form className='mt-5 space-y-4 w-full max-w-md text-black' onSubmit={handleSubmit}>
+        <form className='mt-10 space-y-4 w-full max-w-md text-black' onSubmit={handleSubmit}>
           <div>
             <input 
               type='text' 
