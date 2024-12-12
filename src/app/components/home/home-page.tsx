@@ -68,15 +68,12 @@ export const HomePage = () => {
       setErrorMessage('Password is required');
       return;
     }
-    if (!isPasswordStrong(formData.password)) {
-      setErrorMessage('Password must be at least 8 characters long, include uppercase and lowercase letters, a number, and a special character.');
-      return;
-    }
+    // if (!isPasswordStrong(formData.password)) {
+    //   setErrorMessage('Password must be at least 8 characters long, include uppercase and lowercase letters, a number, and a special character.');
+    //   return;
+    // }
+
     setLoading(true);
-    // Simulate form submission delay
-    setTimeout(() => {
-      console.log('Simulate form submission delay!');
-    }, 3000);
 
     const response = await fetch('/api/register', {
       method: 'POST',
@@ -111,14 +108,14 @@ export const HomePage = () => {
           alt='Logo'
           width={600}
           height={0} // Use state for height
-          className='w-full h-[500px] md:h-[700px]'
+          className='w-full h-[400px] md:h-[700px]'
         />
       </div>
       <div className='flex flex-col flex-grow h-[750px] md:h-[700px] p-10 justify-normal items-center text-white bg-light-lavender'>
         <h1 className='text-6xl font-extrabold mb-10 text-white'>Blit</h1>
         <div className='w-full md:w-[80%] h-auto'>
         <p className='mb-5 text-lg'>
-          Blitz Helps Boost Organic Likes & Engagements on Your Social Media Posts!
+          Blit Helps Boost Organic Likes & Engagements on Your Social Media Posts!
         </p>
         <p className='mb-2 text-lg'>Phase 1 launches very soon, register now to make the cut. Total limited slots 5000, available slots 3870.</p>
         

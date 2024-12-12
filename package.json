@@ -1,5 +1,5 @@
 {
-  "name": "kittl",
+  "name": "blit",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,8 +17,11 @@
     "@hookform/resolvers": "^3.9.1",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.47.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.7",
     "immer": "^10.1.1",
     "lucide-react": "^0.468.0",
     "next": "15.0.4",
