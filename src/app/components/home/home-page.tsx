@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 // import { useEffect, useState } from 'react';
 import { useState } from 'react';
-
+import ProgressBar from './progress-bar';
 
 const Spinner = () => (
   <svg
@@ -28,6 +28,8 @@ export const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [passwordStrength, setPasswordStrength] = useState(0);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -35,12 +37,26 @@ export const HomePage = () => {
       ...prevData,
       [name]: value || '',
     }));
+    if (name === 'password') {
+      checkPasswordStrength(value);
+    }
   };
 
   const isPasswordStrong = (password: string) => {
-    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
     return strongPasswordRegex.test(password);
   };
+
+  const checkPasswordStrength = (password: string) => {
+    let strength = 0;
+    if (/(?=.*[a-z])/.test(password)) strength += 1;
+    if (/(?=.*[A-Z])/.test(password)) strength += 1;
+    if (/(?=.*\d)/.test(password)) strength += 1;
+    if (/(?=.*[!@#$%^&*(),.?":{}|<>])/.test(password)) strength += 1;
+    if (/.{8,}/.test(password)) strength += 1;
+    setPasswordStrength(strength);
+  };
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -68,59 +84,66 @@ export const HomePage = () => {
       setErrorMessage('Password is required');
       return;
     }
-    // if (!isPasswordStrong(formData.password)) {
-    //   setErrorMessage('Password must be at least 8 characters long, include uppercase and lowercase letters, a number, and a special character.');
-    //   return;
-    // }
+    if (!isPasswordStrong(formData.password)) {
+      setErrorMessage('Password must be at least 8 characters long, include uppercase and lowercase letters, a number, and a special character.');
+      return;
+    }
 
     setLoading(true);
 
-    const response = await fetch('/api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    setLoading(false);
-
-    if (response.ok) {
-      console.log('Form submitted successfully');
-      setSuccessMessage('Form submitted successfully!');
-      setFormData({
-        name: '',
-        email: '',
-        country: '',
-        password: '',
+    try {
+      
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-    } else {
-      console.error('Form submission failed');
-      setErrorMessage('Form submission failed. Please try again.');
+
+      setLoading(false);
+
+      if (response.ok) {
+        // console.log({response})
+        setSuccessMessage('Registration was successful! You will be notified when the platform is ready.');
+        setFormData({
+          name: '',
+          email: '',
+          country: '',
+          password: '',
+        });
+      } else {
+        const errorData = await response.json();
+        // console.log({errorData});
+        setErrorMessage(errorData.message);
+      }
+    }catch (error) {
+      console.error('Unexpected error:', error);
+      setErrorMessage('An unexpected error occurred. Please try again.');
     }
   };
 
   return (
-    <div className='flex flex-col md:flex-row w-full md:h-[700px] justify-start items-start bg-light-cream'>
+    <div className='flex flex-col md:flex-row w-full md:h-[auto] justify-start items-start bg-light-lavender'>
       <div className='w-full md:w-[1900px] h-auto'>
         <Image
           src='/social.png'
           alt='Logo'
           width={600}
           height={0} // Use state for height
-          className='w-full h-[450px] md:h-[800px]'
+          className='w-full h-[450px] md:h-[700px]'
         />
       </div>
       <div className='flex flex-col flex-grow h-[900px] md:h-[800px] p-10 justify-normal items-center text-white bg-light-lavender'>
-        <h1 className='text-6xl font-extrabold mb-10 text-white'>Blit</h1>
+        <h1 className='text-6xl font-extrabold mb-10 text-white'>Steeze</h1>
         <div className='w-full md:w-[80%] h-auto'>
         <p className='mb-5 text-lg'>
-          Earn rewards while boosting your favorite content! Blitters get rewarded for
+          Earn rewards while boosting your favorite content! Steezers get rewarded for
           genuine engagement, and content creators thrive with organic interactions. 
-          Make every like count! 🚀✨
+          Make every like count! ✨
         </p>
-        <p className='text-lg'>Phase 1 launches very soon, register now to make the cut. 
-          Total limited slots 5000, available slots 3870.
+        <p className='text-lg'>Steeze launches very soon, register now to make the cut. 
+          Only 5000 steezers wanted for phase 1.
         </p>
         
         <form className='mt-10 space-y-4 w-full max-w-md text-black' onSubmit={handleSubmit}>
@@ -174,6 +197,7 @@ export const HomePage = () => {
               value={formData.password} 
               onChange={handleChange} 
             />
+            <ProgressBar strength={passwordStrength} />
           </div>
           <Button type='submit' className='w-full bg-blue-600 text-white font-bold py-2 rounded-md hover:bg-blue-700' disabled={loading}>
             {loading ? (
