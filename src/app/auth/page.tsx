@@ -3,9 +3,10 @@
 import { Button } from '@/components/ui/button'
 // import { useCounterStore } from '@/providers/counter-store-provider'
 import Image from 'next/image'
-// import { useEffect, useState } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProgressBar from './progress-bar';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Spinner = () => (
   <svg
@@ -18,18 +19,30 @@ const Spinner = () => (
   </svg>
 );
 
-export const HomePage = () => {
+export default function Registration() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     country: '',
     password: '',
+    referral_link: '',
   });
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [passwordStrength, setPasswordStrength] = useState(0);
+  const router = useRouter();
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+      const referral = urlParams.get('referral');
+      if(referral) {
+        setFormData((prevData) => ({
+          ...prevData,
+          referral_link: referral,
+        }));
+      }
+  },[])
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -104,14 +117,19 @@ export const HomePage = () => {
       setLoading(false);
 
       if (response.ok) {
-        // console.log({response})
+        console.log({response})
         setSuccessMessage('Registration was successful! You will be notified when the platform is ready.');
         setFormData({
           name: '',
           email: '',
           country: '',
           password: '',
+          referral_link: '',
         });
+        setTimeout(() => {
+          setSuccessMessage('');
+          router.push('/login')
+        }, 3000)
       } else {
         const errorData = await response.json();
         // console.log({errorData});
@@ -199,7 +217,7 @@ export const HomePage = () => {
             />
             <ProgressBar strength={passwordStrength} />
           </div>
-          <Button type='submit' className='w-full bg-blue-600 text-white font-bold py-2 rounded-md hover:bg-blue-700' disabled={loading}>
+          <Button type='submit' className='w-full text-white font-bold py-2 rounded-md hover:bg-blue-700' disabled={loading}>
             {loading ? (
               <span className="loader"><Spinner/></span>
             ) : (
@@ -209,6 +227,12 @@ export const HomePage = () => {
           {successMessage && <p className="text-green-500">{successMessage}</p>}
           {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         </form>
+        </div>
+        <div className="mt-4 text-center text-sm">
+          Already have an account?{" "}
+          <Link href="/login" className="underline underline-offset-4">
+            Login
+          </Link>
         </div>
       </div>
     </div>

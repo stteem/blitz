@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
-import { HomePage } from './home-page'
+import { HomePage } from './page'
 import { CounterStoreProvider } from '@/providers/counter-store-provider'
 
 describe('HomePage', () => {

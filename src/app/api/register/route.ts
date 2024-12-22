@@ -3,11 +3,6 @@ import { createClient } from '@/utils/supabase/server';
 
 
 
-export async function GET(request: Request) {
-  // Handle GET request
-  return NextResponse.json({ message: 'GET request successful' });
-}
-
 export async function POST(request: Request) {
   try {
     // Initialize the Supabase client
@@ -24,6 +19,7 @@ export async function POST(request: Request) {
           display_name: user.name,
           country: user.country,
           user_name: user.name,
+          referral_link: user.referral,
         }
       }
     });
