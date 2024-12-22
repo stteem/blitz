@@ -157,7 +157,7 @@ export default function Registration() {
         <div className='w-full md:w-[80%] h-auto'>
         <p className='mb-5 text-lg'>
           Earn rewards while boosting your favorite content! Steezers get rewarded for
-          genuine engagement, and content creators thrive with organic interactions. 
+          genuine engagements, and content creators thrive with organic interactions. 
           Make every like count! ✨
         </p>
         <p className='text-lg'>Steeze launches very soon, register now to make the cut. 

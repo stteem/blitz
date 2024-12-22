@@ -14,7 +14,9 @@ const ReferralLink = () => {
   useEffect(() => {
     // Simulate fetching user ID
     const fetchUserId = async () => {
-      const response = await fetch('api/user')
+      const response = await fetch('api/user', {
+        cache: 'force-cache',
+      })
       if(response.ok) {
         const data = await response.json()
         // console.log("User ID:", data.userId)

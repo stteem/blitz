@@ -54,15 +54,15 @@ const Navbar = () => {
           <Link href="/">Steeze</Link>
         </div>
         <div className="hidden md:flex space-x-4">
-          {/* <Link href="/" className="text-white hover:text-gray-400">
+          <Link href="/" className="text-white hover:text-gray-400">
             Home
           </Link>
-          <Link href="/about" className="text-white hover:text-gray-400">
+          {/* <Link href="/about" className="text-white hover:text-gray-400">
             About
-          </Link>
-          <Link href="/services" className="text-white hover:text-gray-400">
-            Services
           </Link> */}
+          <Link href="/how-it-works" className="text-white hover:text-gray-400">
+            How it works
+          </Link>
           <Button onClick={handleSignOut} className="bg-transparent border border-gray-500 text-gray-500 hover:bg-gray-500 hover:text-white py-2 px-4 rounded">
             {loading ? (
               <span className="loader"><Spinner/></span>
@@ -95,15 +95,15 @@ const Navbar = () => {
       </div>
       {isOpen && (
         <div className="md:hidden">
-          {/* <Link href="/" className="block text-white py-2 px-4 hover:bg-gray-700">
+          <Link href="/" className="block text-white py-2 px-4 hover:bg-gray-700">
             Home
           </Link>
-          <Link href="/about" className="block text-white py-2 px-4 hover:bg-gray-700">
+          {/* <Link href="/about" className="block text-white py-2 px-4 hover:bg-gray-700">
             About
-          </Link>
-          <Link href="/services" className="block text-white py-2 px-4 hover:bg-gray-700">
-            Services
           </Link> */}
+          <Link href="/how-it-works" className="block text-white py-2 px-4 hover:bg-gray-700">
+            How it works
+          </Link>
           <Button onClick={handleSignOut} className="block bg-transparent border border-gray-500 text-gray-500 hover:bg-gray-500 hover:text-white py-2 px-4 rounded">
             {loading? (
               <span className="loader"><Spinner/></span>

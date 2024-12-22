@@ -48,6 +48,11 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
+   // Set user name cookie if user is authenticated
+  // if (user) {
+  //   supabaseResponse.cookies.set('user_name', user.user_metadata.full_name, { path: '/' })
+  // }
+
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
   // If you're creating a new response object with NextResponse.next() make sure to:
   // 1. Pass the request in it, like so:
