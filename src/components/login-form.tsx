@@ -56,7 +56,7 @@ export function LoginForm({
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        console.log({response})
+        // console.log({response})
         setEmail('');
         setPassword('');
         setLoading(false);

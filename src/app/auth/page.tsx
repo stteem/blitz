@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import ProgressBar from './progress-bar';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { Input } from '@/components/ui/input';
 
 const Spinner = () => (
   <svg
@@ -153,7 +154,8 @@ export default function Registration() {
         />
       </div>
       <div className='flex flex-col flex-grow h-[900px] md:h-[800px] p-10 justify-normal items-center text-white bg-light-lavender'>
-        <h1 className='text-6xl font-extrabold mb-10 text-white'>Steeze</h1>
+        <h1 className='text-6xl font-extrabold mb-5 text-white'>Steeze</h1>
+        <h1 className='text-2xl font-semibold mb-5'>Like for like, follow for follow!</h1>
         <div className='w-full md:w-[80%] h-auto'>
         <p className='mb-5 text-lg'>
           Earn rewards while boosting your favorite content! Steezers get rewarded for
@@ -166,13 +168,13 @@ export default function Registration() {
         
         <form className='mt-10 space-y-4 w-full max-w-md text-black' onSubmit={handleSubmit}>
           <div>
-            <input 
+            <Input 
               type='text' 
               id='name' 
               name='name' 
               required 
               placeholder='Name' 
-              className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-500' 
+              className='mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm p-2 focus:ring focus:ring-blue-500' 
               value={formData.name} 
               onChange={handleChange} 
             />
@@ -182,7 +184,7 @@ export default function Registration() {
               id='country' 
               name='country' 
               required 
-              className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-500' 
+              className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring' 
               value={formData.country} 
               onChange={handleChange} 
             >
@@ -192,32 +194,32 @@ export default function Registration() {
             </select>
           </div>
           <div>
-            <input 
+            <Input 
               type='email' 
               id='email' 
               name='email' 
               placeholder='Email Address'
               required 
-              className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-500' 
+              className='mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm p-2 focus:ring focus:ring-blue-500' 
               value={formData.email}
               onChange={handleChange} 
             />
           </div>
           <div>
-            <input 
+            <Input 
               type='password' 
               id='password' 
               name='password' 
               autoComplete='new-password' 
               required 
               placeholder='Password' 
-              className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-500' 
+              className='mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm p-2 focus:ring focus:ring-blue-500' 
               value={formData.password} 
               onChange={handleChange} 
             />
-            <ProgressBar strength={passwordStrength} />
+            <div><ProgressBar strength={passwordStrength} /></div>
           </div>
-          <Button type='submit' className='w-full text-white font-bold py-2 rounded-md hover:bg-blue-700' disabled={loading}>
+          <Button type='submit' className='w-full text-white font-bold py-2 rounded-md' disabled={loading}>
             {loading ? (
               <span className="loader"><Spinner/></span>
             ) : (

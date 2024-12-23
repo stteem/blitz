@@ -49,9 +49,10 @@ export async function updateSession(request: NextRequest) {
   }
 
    // Set user name cookie if user is authenticated
-  // if (user) {
-  //   supabaseResponse.cookies.set('user_name', user.user_metadata.full_name, { path: '/' })
-  // }
+  if (user) {
+    // console.log('Setting user name cookie ', user)
+    supabaseResponse.cookies.set('user_name', user.user_metadata.user_name, { path: '/' })
+  }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
   // If you're creating a new response object with NextResponse.next() make sure to:
