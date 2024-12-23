@@ -24,7 +24,7 @@ export default function HowItWorks() {
                 reward people for liking, commenting, or following them.
             </p>
             <p>
-                Author shares post link on Kpaly, when clicked on, the link takes users to 
+                Basically, an author shares post link on Steeze, when clicked on, the link takes users to 
                 Facebook, Threads, or Instagram for the engagements.
             </p>
         </div>
